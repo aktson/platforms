@@ -20,6 +20,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { ParsedUrlQuery } from "querystring";
 import { placeholderBlurhash, toDateString } from "@/lib/utils";
+import { LOCAL_URL } from "@/components/constants/local";
 
 const components = {
   a: replaceLinks,
@@ -56,7 +57,7 @@ export default function Post({
     description: data.description,
     logo: "/logo.png",
     ogImage: data.image,
-    ogUrl: `https://${data.site?.subdomain}.vercel.pub/${data.slug}`,
+    ogUrl: `http://${data.site?.subdomain}.${LOCAL_URL}/${data.slug}`,
     title: data.title,
   } as Meta;
 

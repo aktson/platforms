@@ -71,16 +71,16 @@ export async function getPost(
     const posts = !site
       ? []
       : await prisma.post.findMany({
-          where: {
-            site: {
-              id: siteId,
-            },
-            published: JSON.parse(published || "true"),
+        where: {
+          site: {
+            id: siteId,
           },
-          orderBy: {
-            createdAt: "desc",
-          },
-        });
+          published: JSON.parse(published || "true"),
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
 
     return res.status(200).json({
       posts,

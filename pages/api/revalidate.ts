@@ -1,3 +1,4 @@
+import { LOCAL_URL } from "@/components/constants/local";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -5,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { urlPath } = req.body;
-  res.setHeader("Access-Control-Allow-Origin", "https://app.vercel.pub");
+  res.setHeader("Access-Control-Allow-Origin", `http://app.${LOCAL_URL}`);
   res.setHeader("Access-Control-Allow-Methods", "POST");
 
   try {

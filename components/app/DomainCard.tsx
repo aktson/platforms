@@ -68,11 +68,10 @@ export default function DomainCard({ data }: DomainCardProps) {
               mutate(`/api/domain/check?domain=${data.customDomain}`);
             }}
             disabled={isValidating}
-            className={`${
-              isValidating
-                ? "cursor-not-allowed bg-gray-100"
-                : "bg-white hover:text-black hover:border-black"
-            } text-gray-500 border-gray-200 py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
+            className={`${isValidating
+              ? "cursor-not-allowed bg-gray-100"
+              : "bg-white hover:text-black hover:border-black"
+              } text-gray-500 border-gray-200 py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
             {isValidating ? <LoadingDots /> : "Refresh"}
           </button>
@@ -94,9 +93,8 @@ export default function DomainCard({ data }: DomainCardProps) {
               });
             }}
             disabled={removing}
-            className={`${
-              removing ? "cursor-not-allowed bg-gray-100" : ""
-            }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
+            className={`${removing ? "cursor-not-allowed bg-gray-100" : ""
+              }bg-red-500 text-white border-red-500 hover:text-red-500 hover:bg-white py-1.5 w-24 text-sm border-solid border rounded-md focus:outline-none transition-all ease-in-out duration-150`}
           >
             {removing ? <LoadingDots /> : "Remove"}
           </button>
@@ -130,9 +128,8 @@ export default function DomainCard({ data }: DomainCardProps) {
           )}
         </svg>
         <p
-          className={`${
-            valid ? "text-black font-normal" : "text-red-700 font-medium"
-          } text-sm`}
+          className={`${valid ? "text-black font-normal" : "text-red-700 font-medium"
+            } text-sm`}
         >
           {valid ? "Valid" : "Invalid"} Configuration
         </p>
@@ -146,11 +143,10 @@ export default function DomainCard({ data }: DomainCardProps) {
             <div className="flex justify-start space-x-4">
               <button
                 onClick={() => setRecordType("CNAME")}
-                className={`${
-                  recordType == "CNAME"
-                    ? "text-black border-black"
-                    : "text-gray-400 border-white"
-                } text-sm border-b-2 pb-1 transition-all ease duration-150`}
+                className={`${recordType == "CNAME"
+                  ? "text-black border-black"
+                  : "text-gray-400 border-white"
+                  } text-sm border-b-2 pb-1 transition-all ease duration-150`}
               >
                 CNAME Record (subdomains)
               </button>
@@ -158,11 +154,10 @@ export default function DomainCard({ data }: DomainCardProps) {
               {!subdomain && (
                 <button
                   onClick={() => setRecordType("A")}
-                  className={`${
-                    recordType == "A"
-                      ? "text-black border-black"
-                      : "text-gray-400 border-white"
-                  } text-sm border-b-2 pb-1 transition-all ease duration-150`}
+                  className={`${recordType == "A"
+                    ? "text-black border-black"
+                    : "text-gray-400 border-white"
+                    } text-sm border-b-2 pb-1 transition-all ease duration-150`}
                 >
                   A Record (apex domain)
                 </button>
@@ -184,8 +179,8 @@ export default function DomainCard({ data }: DomainCardProps) {
                     {recordType === "A"
                       ? "@"
                       : recordType == "CNAME" && subdomain
-                      ? subdomain
-                      : "www"}
+                        ? subdomain
+                        : "www"}
                   </p>
                 </div>
                 <div>

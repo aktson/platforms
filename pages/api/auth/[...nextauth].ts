@@ -2,6 +2,7 @@ import NextAuth, { type NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import { LOCAL_URL } from "@/components/constants/local";
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -38,7 +39,7 @@ export const authOptions: NextAuthOptions = {
         sameSite: "lax",
         path: "/",
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: VERCEL_DEPLOYMENT ? ".vercel.pub" : undefined,
+        domain: VERCEL_DEPLOYMENT ? `.${LOCAL_URL}` : undefined,
         secure: VERCEL_DEPLOYMENT,
       },
     },

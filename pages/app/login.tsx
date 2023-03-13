@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LoadingDots from "@/components/app/loading-dots";
 import toast, { Toaster } from "react-hot-toast";
+import { LOCAL_URL } from "@/components/constants/local";
 
 const pageTitle = "Login";
 const logo = "/favicon.ico";
@@ -66,7 +67,7 @@ export default function Login() {
           Build multi-tenant applications with custom domains. <br /> Read the{" "}
           <a
             className="font-medium text-black hover:text-gray-800"
-            href="https://demo.vercel.pub/platforms-starter-kit"
+            href={`http:/app.${LOCAL_URL}/platforms-starter-kit`}
             rel="noreferrer"
             target="_blank"
           >
@@ -83,9 +84,8 @@ export default function Login() {
               setLoading(true);
               signIn("github");
             }}
-            className={`${
-              loading ? "cursor-not-allowed bg-gray-600" : "bg-black"
-            } group flex justify-center items-center space-x-5 w-full sm:px-4 h-16 my-2 rounded-md focus:outline-none`}
+            className={`${loading ? "cursor-not-allowed bg-gray-600" : "bg-black"
+              } group flex justify-center items-center space-x-5 w-full sm:px-4 h-16 my-2 rounded-md focus:outline-none`}
           >
             {loading ? (
               <LoadingDots color="#fff" />

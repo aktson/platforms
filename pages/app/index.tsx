@@ -13,6 +13,7 @@ import { HttpMethod } from "@/types";
 
 import type { FormEvent } from "react";
 import type { Site } from "@prisma/client";
+import { LOCAL_URL } from "@/components/constants/local";
 
 export default function AppIndex() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -35,7 +36,7 @@ export default function AppIndex() {
         if (available) {
           setError(null);
         } else {
-          setError(`${debouncedSubdomain}.vercel.pub`);
+          setError(`${debouncedSubdomain}.${LOCAL_URL}`);
         }
       }
     }
@@ -109,7 +110,7 @@ export default function AppIndex() {
                 type="text"
               />
               <span className="px-5 bg-gray-100 h-full flex items-center rounded-r-lg border-l border-gray-600">
-                .vercel.pub
+                .{LOCAL_URL}
               </span>
             </div>
             {error && (
@@ -145,11 +146,10 @@ export default function AppIndex() {
             <button
               type="submit"
               disabled={creatingSite || error !== null}
-              className={`${
-                creatingSite || error
-                  ? "cursor-not-allowed text-gray-400 bg-gray-50"
-                  : "bg-white text-gray-600 hover:text-black"
-              } w-full px-5 py-5 text-sm border-t border-l border-gray-300 rounded-br focus:outline-none focus:ring-0 transition-all ease-in-out duration-150`}
+              className={`${creatingSite || error
+                ? "cursor-not-allowed text-gray-400 bg-gray-50"
+                : "bg-white text-gray-600 hover:text-black"
+                } w-full px-5 py-5 text-sm border-t border-l border-gray-300 rounded-br focus:outline-none focus:ring-0 transition-all ease-in-out duration-150`}
             >
               {creatingSite ? <LoadingDots /> : "CREATE SITE"}
             </button>
@@ -195,12 +195,12 @@ export default function AppIndex() {
                       </p>
                       <a
                         className="font-cal px-3 py-1 tracking-wide rounded bg-gray-200 text-gray-600 absolute bottom-5 left-10 whitespace-nowrap"
-                        href={`https://${site.subdomain}.vercel.pub`}
+                        href={`http://${site.subdomain}.${LOCAL_URL}`}
                         onClick={(e) => e.stopPropagation()}
                         rel="noreferrer"
                         target="_blank"
                       >
-                        {site.subdomain}.vercel.pub ↗
+                        {site.subdomain}.{LOCAL_URL} ↗
                       </a>
                     </div>
                   </div>

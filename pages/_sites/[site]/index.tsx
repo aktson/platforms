@@ -10,6 +10,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import type { _SiteData, Meta } from "@/types";
 import type { ParsedUrlQuery } from "querystring";
 import { placeholderBlurhash, toDateString } from "@/lib/utils";
+import { LOCAL_URL } from "@/components/constants/local";
 
 interface PathProps extends ParsedUrlQuery {
   site: string;
@@ -32,7 +33,7 @@ export default function Index({ stringifiedData }: IndexProps) {
     ogImage: data.image,
     ogUrl: data.customDomain
       ? data.customDomain
-      : `https://${data.subdomain}.vercel.pub`,
+      : `http://${data.subdomain}.${LOCAL_URL}`,
   } as Meta;
 
   return (

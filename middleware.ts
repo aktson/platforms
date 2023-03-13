@@ -1,5 +1,6 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
+import { LOCAL_URL } from "./components/constants/local";
 
 export const config = {
   matcher: [
@@ -18,14 +19,14 @@ export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
-  const hostname = req.headers.get("host") || "demo.localhost:3000";
+  const hostname = req.headers.get("host") || `${LOCAL_URL}`;
 
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = url.pathname;
 
   // Only for demo purposes - remove this if you want to use your root domain as the landing page
-  if (hostname === "vercel.pub" || hostname === "platforms.vercel.app") {
-    return NextResponse.redirect("https://demo.localhost:3000");
+  if (hostname === `${LOCAL_URL}` || hostname === "platforms.vercel.app") {
+    return NextResponse.redirect(`http://app.${LOCAL_URL}`);
   }
 
   /*  You have to replace ".vercel.pub" with your own domain if you deploy this example under your domain.
@@ -35,9 +36,9 @@ export default async function middleware(req: NextRequest) {
   const currentHost =
     process.env.NODE_ENV === "production" && process.env.VERCEL === "1"
       ? hostname
-        .replace(`.platforms-theta.vercel.app/`, "")
+        .replace(`.${LOCAL_URL}`, "")
         .replace(`.platformize.vercel.app`, "")
-      : hostname.replace(`.localhost:3000`, "");
+      : hostname.replace(`.${LOCAL_URL}`, "");
 
   // rewrites for app pages
   if (currentHost == "app") {
@@ -55,7 +56,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   // rewrite root application to `/home` folder
-  if (hostname === "localhost:3000" || hostname === "platformize.vercel.app") {
+  if (hostname === "${LOCAL_URL}" || hostname === "platformize.vercel.app") {
     return NextResponse.rewrite(new URL(`/home${path}`, req.url));
   }
 
