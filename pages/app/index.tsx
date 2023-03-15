@@ -167,6 +167,7 @@ export default function AppIndex() {
             New Site <span className="ml-2">＋</span>
           </button>
         </div>
+
         <div className="my-10 grid gap-y-10">
           {sites ? (
             sites.length > 0 ? (

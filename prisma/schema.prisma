@@ -1,19 +1,18 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 datasource db {
-  provider     = "mongodb"
-  url          = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["mongoDb"]
 }
 
 model User {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   // if you are using Github OAuth, you can get rid of the username attribute (that is for Twitter OAuth)
   username      String?
@@ -23,6 +22,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  password      String
   accounts      Account[]
   sessions      Session[]
   sites         Site[]
@@ -71,11 +71,11 @@ model VerificationToken {
 }
 
 model Post {
-  id            String   @id   @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   title         String?  @db.String
   description   String?  @db.String
   content       String?  @db.String
-  slug          String   @default(cuid()) @unique
+  slug          String   @unique @default(cuid())
   image         String?  @db.String
   imageBlurhash String?  @db.String
   createdAt     DateTime @default(now())
@@ -89,7 +89,7 @@ model Post {
 }
 
 model Site {
-  id            String   @id   @default(auto()) @map("_id") @db.ObjectId
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   description   String?  @db.String
   logo          String?
@@ -108,7 +108,7 @@ model Site {
 }
 
 model Example {
-  id            String     @id   @default(auto()) @map("_id") @db.ObjectId
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   description   String? @db.String
   domainCount   Int?

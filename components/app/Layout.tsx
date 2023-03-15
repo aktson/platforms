@@ -105,19 +105,25 @@ export default function Layout({ siteId, children }: LayoutProps) {
         </div>
         {rootPage && (
           <div className="absolute left-0 right-0 top-16 flex justify-center items-center font-cal space-x-16 border-b bg-white border-gray-200">
+
             <Link
               href="/"
-              className={`border-b-2 ${
-                tab == "" ? "border-black" : "border-transparent"
-              } py-3`}
+              className={`border-b-2 ${tab == "" ? "border-black" : "border-transparent"
+                } py-3`}
             >
               My Sites
             </Link>
             <Link
+              href="/users"
+              className={`border-b-2 ${tab == "users" ? "border-black" : "border-transparent"
+                } py-3`}
+            >
+              Users
+            </Link>
+            <Link
               href="/settings"
-              className={`border-b-2 ${
-                tab == "settings" ? "border-black" : "border-transparent"
-              } py-3`}
+              className={`border-b-2 ${tab == "settings" ? "border-black" : "border-transparent"
+                } py-3`}
             >
               Settings
             </Link>
@@ -132,25 +138,22 @@ export default function Layout({ siteId, children }: LayoutProps) {
               <div className="flex justify-between items-center space-x-10 md:space-x-16">
                 <Link
                   href={`/site/${router.query.id}`}
-                  className={`border-b-2 ${
-                    !tab ? "border-black" : "border-transparent"
-                  } py-3`}
+                  className={`border-b-2 ${!tab ? "border-black" : "border-transparent"
+                    } py-3`}
                 >
                   Posts
                 </Link>
                 <Link
                   href={`/site/${router.query.id}/drafts`}
-                  className={`border-b-2 ${
-                    tab == "drafts" ? "border-black" : "border-transparent"
-                  } py-3`}
+                  className={`border-b-2 ${tab == "drafts" ? "border-black" : "border-transparent"
+                    } py-3`}
                 >
                   Drafts
                 </Link>
                 <Link
                   href={`/site/${router.query.id}/settings`}
-                  className={`border-b-2 ${
-                    tab == "settings" ? "border-black" : "border-transparent"
-                  } py-3`}
+                  className={`border-b-2 ${tab == "settings" ? "border-black" : "border-transparent"
+                    } py-3`}
                 >
                   Settings
                 </Link>
@@ -178,17 +181,15 @@ export default function Layout({ siteId, children }: LayoutProps) {
               <div className="flex justify-between items-center space-x-10 md:space-x-16">
                 <Link
                   href={`/post/${router.query.id}`}
-                  className={`border-b-2 ${
-                    !tab ? "border-black" : "border-transparent"
-                  } py-3`}
+                  className={`border-b-2 ${!tab ? "border-black" : "border-transparent"
+                    } py-3`}
                 >
                   Editor
                 </Link>
                 <Link
                   href={`/post/${router.query.id}/settings`}
-                  className={`border-b-2 ${
-                    tab == "settings" ? "border-black" : "border-transparent"
-                  } py-3`}
+                  className={`border-b-2 ${tab == "settings" ? "border-black" : "border-transparent"
+                    } py-3`}
                 >
                   Settings
                 </Link>
